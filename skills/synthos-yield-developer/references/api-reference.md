@@ -1,0 +1,197 @@
+# SynthOS MCP API Reference
+
+## Available Tools
+
+### Read-Only Tools
+
+#### `synthos_check_yields`
+Browse current DeFi yield opportunities across EVM chains.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `token` | string | No | Filter by token symbol (USDC, USDT) |
+| `minApy` | number | No | Minimum APY (decimal, 0.05 = 5%) |
+| `chain` | string | No | Filter by chain name (base, arbitrum) |
+| `sortBy` | "apy" \| "name" | No | Sort field (default: apy) |
+| `limit` | number | No | Max results (default: 10) |
+
+#### `synthos_portfolio`
+Check current positions, allocation breakdown, and weighted APY.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `walletAddress` | string | Yes | Ethereum address (0x...) |
+| `chainId` | number | No | Chain ID (default: 534352) |
+
+### Write Tools
+
+#### `synthos_deposit`
+Deposit assets into SynthOS vault.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `walletAddress` | string | Yes | Your wallet address |
+| `asset` | string | Yes | Token symbol or address |
+| `amount` | string | Yes | Human-readable amount (e.g., "100.5") |
+| `chainId` | number | No | Chain ID (default: 534352) |
+
+#### `synthos_withdraw`
+Withdraw assets from SynthOS vault.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `walletAddress` | string | Yes | Your wallet address |
+| `asset` | string | Yes | Token symbol or address |
+| `amount` | string | Yes | Human-readable amount |
+| `recipientAddress` | string | No | Withdraw to different address |
+| `chainId` | number | No | Chain ID (default: 534352) |
+
+#### `synthos_strategy_deposit`
+Deposit into a specific cross-chain yield strategy.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `walletAddress` | string | Yes | Your wallet address |
+| `protocolId` | string | Yes | Protocol UUID from check_yields |
+| `amount` | string | Yes | Human-readable amount |
+| `asset` | string | No | Token symbol (default: USDC) |
+| `chainId` | number | No | Chain ID (default: 534352) |
+
+#### `synthos_strategy_withdraw`
+Withdraw from a specific strategy position.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `walletAddress` | string | Yes | Your wallet address |
+| `positionIndex` | number | Yes | Position index from portfolio |
+| `amount` | string | Yes | Human-readable amount |
+| `asset` | string | No | Token symbol (default: USDC) |
+| `destinationChain` | number | Yes | Chain ID to receive funds |
+| `chainId` | number | No | Source chain ID (default: 534352) |
+
+### AI/Composed Tools
+
+#### `synthos_analyze_wallet`
+Full AI wallet analysis — risk profile, behavior, positions, idle assets.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `walletAddress` | string | Yes | Wallet to analyze |
+
+**Note:** Takes 1-3 minutes for new wallets. Results cached for 30 days.
+
+#### `synthos_get_recommendation`
+AI-recommended diversified yield bundle via bull/bear/moderator debate.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `walletAddress` | string | Yes | Wallet to recommend for |
+| `tokens` | string[] | No | Filter by tokens |
+| `chains` | number[] | No | Filter by chain IDs |
+| `minRiskScore` | number | No | Min risk score (0-100) |
+| `maxRiskScore` | number | No | Max risk score (0-100) |
+| `bundleSize` | number | No | Strategies per bundle (1-10) |
+| `excludeUSX` | boolean | No | Exclude USX token |
+
+#### `synthos_rebalance`
+Compare current vs optimal allocation with optional auto-execute.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `walletAddress` | string | Yes | Your wallet address |
+| `chainId` | number | No | Chain ID (default: 534352) |
+| `autoExecute` | boolean | No | Execute rebalance (default: false) |
+
+#### `synthos_migrate`
+Find migration opportunities from external DeFi to SynthOS.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `walletAddress` | string | Yes | Wallet to check |
+
+### State Tool
+
+#### `synthos_set_preferences`
+Set yield selection rules for the session.
+
+**Inputs:**
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `walletAddress` | string | Yes | Wallet address |
+| `maxAllocationPerProtocol` | number | No | Max % per protocol |
+| `auditedOnly` | boolean | No | Only audited protocols |
+| `minRiskScore` | number | No | Min risk score (0-100) |
+| `maxRiskScore` | number | No | Max risk score (0-100) |
+| `excludeChains` | number[] | No | Chain IDs to exclude |
+| `excludeProtocols` | string[] | No | Protocol names to exclude |
+| `preferredTokens` | string[] | No | Preferred tokens |
+
+## MCP Server Setup
+
+### Hosted (recommended — no API keys needed)
+
+Connect to the SynthOS hosted MCP server:
+
+```json
+{
+  "mcpServers": {
+    "synthos": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.synthos.fun/mcp"]
+    }
+  }
+}
+```
+
+Works with Claude Desktop, Cursor, VS Code, and any MCP-compatible client.
+
+### Self-Hosted (for developers running their own instance)
+
+```json
+{
+  "mcpServers": {
+    "synthos": {
+      "command": "npx",
+      "args": ["-y", "@synthos/mcp"],
+      "env": {
+        "BACKEND_URL": "https://backend.synthos.fun",
+        "BACKEND_API_KEY": "your-key",
+        "ANALYZER_URL": "https://ai.synthos.fun",
+        "ANALYZER_API_KEY": "your-key"
+      }
+    }
+  }
+}
+```
+
+### Self-Hosted HTTP Mode (deploy your own server)
+
+```bash
+TRANSPORT=http PORT=3100 \
+BACKEND_URL=https://backend.synthos.fun \
+BACKEND_API_KEY=your-key \
+ANALYZER_URL=https://ai.synthos.fun \
+ANALYZER_API_KEY=your-key \
+npx @synthos/mcp
+```
+
+Then connect MCP clients to `http://localhost:3100/mcp`.
+
+## Authentication
+
+**Hosted server:** No authentication needed from users. API keys are managed server-side.
+
+**Self-hosted:** Requires your own API keys:
+- `BACKEND_API_KEY` — for vault/strategy operations
+- `ANALYZER_API_KEY` — for wallet analysis and recommendations
+- `MCP_AUTH_TOKEN` (optional, HTTP mode only) — protects the MCP endpoint
