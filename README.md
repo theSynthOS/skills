@@ -38,6 +38,6 @@ Or install via [Smithery](https://smithery.ai/server/theSynthOS/yield).
 ## Links
 
 - [Website](https://synthos.fun)
-- [Documentation](https://docs.synthos.fun/docs/ai)
+- [Documentation](https://docs.synthos.fun/docs/ai/overview)
 - [npm](https://www.npmjs.com/package/@synthos/mcp)
 - [Smithery](https://smithery.ai/server/theSynthOS/yield)

@@ -6,7 +6,7 @@ compatibility: Requires SynthOS MCP server. Connect to hosted server (no API key
 metadata:
   category: finance
   homepage: https://synthos.fun
-  documentation: https://docs.synthos.fun/docs/ai
+  documentation: https://docs.synthos.fun/docs/ai/overview
   mcp-server: https://mcp.synthos.fun/mcp
   smithery: https://smithery.ai/server/theSynthOS/yield
 ---

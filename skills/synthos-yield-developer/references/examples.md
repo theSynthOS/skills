@@ -109,4 +109,4 @@ Your Agent / Application
 
 ## Getting API Keys
 
-Contact the SynthOS team at [synthos.fun](https://synthos.fun) for API access, or check the docs at [docs.synthos.fun/mcp](https://docs.synthos.fun/mcp).
+Contact the SynthOS team at [synthos.fun](https://synthos.fun) for API access, or check the docs at [docs.synthos.fun/mcp](https://docs.synthos.fun/docs/ai/mcp-server).
