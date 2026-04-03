@@ -2,10 +2,10 @@
 
 ## Analyzing a Wallet
 
-Use `analyze_wallet` to perform a comprehensive AI analysis of any EVM wallet.
+Use `wallet.analyze` to perform a comprehensive AI analysis of any EVM wallet.
 
 ```
-analyze_wallet(walletAddress="0x...")
+wallet.analyze(walletAddress="0x...")
 ```
 
 ### What It Returns
@@ -33,15 +33,15 @@ analyze_wallet(walletAddress="0x...")
 ### After Analysis
 
 Common next steps:
-1. `get_recommendation` — uses the analysis to build a personalized yield bundle
-2. `migrate` — find better yield vs current external positions
+1. `wallet.recommend` — uses the analysis to build a personalized yield bundle
+2. `wallet.migrate` — find better yield vs current external positions
 3. Share the risk profile and idle assets summary with the user
 
 ### Example Conversation
 
 **User:** "Analyze my wallet 0xABC...DEF"
 
-1. Call `analyze_wallet("0xABC...DEF")`
+1. Call `wallet.analyze("0xABC...DEF")`
 2. Present the risk profile, activity summary, and idle assets
 3. Suggest: "You have $2,400 in idle USDC. Want me to find the best yield for your Moderate risk profile?"
-4. If yes, call `get_recommendation`
+4. If yes, call `wallet.recommend`

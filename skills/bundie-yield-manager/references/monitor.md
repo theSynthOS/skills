@@ -2,7 +2,7 @@
 
 ## Checking Portfolio
 
-Use `portfolio` to see current positions and performance.
+Use `portfolio.view` to see current positions and performance.
 
 ```
 portfolio(walletAddress="0x...")
@@ -23,16 +23,16 @@ portfolio(walletAddress="0x...")
 
 ## Browsing Available Yields
 
-Use `check_yields` to explore what's available.
+Use `yields.check` to explore what's available.
 
 ```
-check_yields()
+yields.check()
 ```
 
 ### Filtering
 
 ```
-check_yields(token="USDC", minApy=0.05, chain="base", limit=5)
+yields.check(token="USDC", minApy=0.05, chain="base", limit=5)
 ```
 
 | Filter | Description | Example |
@@ -45,11 +45,11 @@ check_yields(token="USDC", minApy=0.05, chain="base", limit=5)
 
 ### When to Browse vs Recommend
 
-- **Browse** (`check_yields`): User wants to see what's available, compare options manually
-- **Recommend** (`get_recommendation`): User wants AI to pick the best allocation for them
+- **Browse** (`yields.check`): User wants to see what's available, compare options manually
+- **Recommend** (`wallet.recommend`): User wants AI to pick the best allocation for them
 
-If the user asks "what are the best yields?" — use `check_yields`.
-If the user asks "where should I put my money?" — use `get_recommendation`.
+If the user asks "what are the best yields?" — use `yields.check`.
+If the user asks "where should I put my money?" — use `wallet.recommend`.
 
 ## Supported Chains
 
@@ -68,14 +68,14 @@ New chains are added regularly — the MCP server dynamically passes `chainId` s
 ## Common Workflows
 
 ### "How am I doing?"
-1. `portfolio` — show positions and APY
+1. `portfolio.view` — show positions and APY
 2. Summarize total value, weighted APY, and yield earned
 
 ### "What's the best yield right now?"
-1. `check_yields(sortBy="apy", limit=5)` — top 5 by APY
+1. `yields.check(sortBy="apy", limit=5)` — top 5 by APY
 2. Present with risk context ("highest APY but lower risk score")
 
 ### "Am I earning the best I can?"
-1. `portfolio` — current positions
-2. `rebalance` — compare vs optimal
+1. `portfolio.view` — current positions
+2. `portfolio.rebalance` — compare vs optimal
 3. Present the delta and suggest action if significant

@@ -5,10 +5,10 @@
 A basic agent that deposits idle USDC into the best yield:
 
 ```
-1. analyze_wallet("0xUSER")
+1. wallet.analyze("0xUSER")
    → Risk profile: Moderate, $5,000 idle USDC detected
 
-2. get_recommendation("0xUSER", tokens=["USDC"])
+2. wallet.recommend("0xUSER", tokens=["USDC"])
    → Bundle: 40% Morpho (Base, 9.1%), 35% Fluid (Scroll, 8.5%), 25% Moonwell (Optimism, 7.8%)
 
 3. deposit("0xUSER", asset="USDC", amount="5000")
@@ -29,7 +29,7 @@ After a profitable trade:
 
 1. Check balance: portfolio("0xBOT")
 2. If idle USDC > 1000:
-   get_recommendation("0xBOT", tokens=["USDC"], minRiskScore=80)
+   wallet.recommend("0xBOT", tokens=["USDC"], minRiskScore=80)
 3. Deposit excess: deposit("0xBOT", "USDC", excessAmount)
 4. Allocate per recommendation
 ```
@@ -39,13 +39,13 @@ After a profitable trade:
 A DAO treasury agent with governance-set rules:
 
 ```
-1. set_preferences("0xDAO",
+1. portfolio.preferences("0xDAO",
      maxAllocationPerProtocol=20,
      auditedOnly=true,
      minRiskScore=85,
      preferredTokens=["USDC", "USDT"])
 
-2. get_recommendation("0xDAO")
+2. wallet.recommend("0xDAO")
    → Conservative bundle respecting DAO rules
 
 3. Deploy funds per recommendation
@@ -59,7 +59,7 @@ A DAO treasury agent with governance-set rules:
 Help users move from external DeFi to Bundie:
 
 ```
-1. analyze_wallet("0xUSER")
+1. wallet.analyze("0xUSER")
    → Found 3 external positions with suboptimal yield
 
 2. migrate("0xUSER")
@@ -75,8 +75,8 @@ Help users move from external DeFi to Bundie:
 An agent with stop-loss and risk monitoring:
 
 ```
-1. set_preferences("0xUSER", minRiskScore=80, maxAllocationPerProtocol=25)
-2. get_recommendation("0xUSER") → Deploy funds
+1. portfolio.preferences("0xUSER", minRiskScore=80, maxAllocationPerProtocol=25)
+2. wallet.recommend("0xUSER") → Deploy funds
 3. Periodically:
    - portfolio("0xUSER") → Check positions
    - rebalance("0xUSER") → Compare vs optimal
@@ -91,10 +91,10 @@ Your Agent / Application
     ├─ Install: npx skills add bundie-fi/mcp
     │  or: Add MCP server to config
     │
-    ├─ Read:  check_yields, portfolio
+    ├─ Read:  yields.check, portfolio
     ├─ Write: deposit, withdraw, bundie_strategy_*
-    ├─ AI:    analyze_wallet, get_recommendation
-    └─ State: set_preferences
+    ├─ AI:    wallet.analyze, wallet.recommend
+    └─ State: portfolio.preferences
          │
          ▼
     Bundie MCP Server (@bundie/mcp)

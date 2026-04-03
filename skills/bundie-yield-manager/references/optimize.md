@@ -2,10 +2,10 @@
 
 ## Getting AI Recommendations
 
-Use `get_recommendation` to get a personalized yield bundle.
+Use `wallet.recommend` to get a personalized yield bundle.
 
 ```
-get_recommendation(walletAddress="0x...")
+wallet.recommend(walletAddress="0x...")
 ```
 
 ### How It Works
@@ -18,7 +18,7 @@ get_recommendation(walletAddress="0x...")
 
 Pass optional filters:
 ```
-get_recommendation(
+wallet.recommend(
   walletAddress="0x...",
   tokens=["USDC"],
   minRiskScore=80,
@@ -28,7 +28,7 @@ get_recommendation(
 
 Or set persistent preferences first:
 ```
-set_preferences(
+portfolio.preferences(
   walletAddress="0x...",
   minRiskScore=80,
   auditedOnly=true,
@@ -36,17 +36,17 @@ set_preferences(
 )
 ```
 
-Then `get_recommendation` will use those preferences automatically.
+Then `wallet.recommend` will use those preferences automatically.
 
 ### Acting on Recommendations
 
 After the user approves a recommendation:
-1. `deposit` — deposit the total amount to vault
-2. For each item in the bundle, `strategy_deposit` with the allocated amount
+1. `vault.deposit` — deposit the total amount to vault
+2. For each item in the bundle, `strategy.deposit` with the allocated amount
 
 ## Rebalancing
 
-Use `rebalance` to compare current positions vs optimal allocation.
+Use `portfolio.rebalance` to compare current positions vs optimal allocation.
 
 ```
 rebalance(walletAddress="0x...")
@@ -68,7 +68,7 @@ This will reallocate funds based on the suggestions. Only use if the user explic
 
 ## Migration Opportunities
 
-Use `migrate` to find better yield vs external DeFi positions.
+Use `wallet.migrate` to find better yield vs external DeFi positions.
 
 ```
 migrate(walletAddress="0x...")
@@ -82,10 +82,10 @@ Requires a prior wallet analysis. Shows:
 
 ## Setting Preferences
 
-Use `set_preferences` to establish rules for the session.
+Use `portfolio.preferences` to establish rules for the session.
 
 ```
-set_preferences(
+portfolio.preferences(
   walletAddress="0x...",
   maxAllocationPerProtocol=30,
   auditedOnly=true,

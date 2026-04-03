@@ -4,7 +4,7 @@
 
 ### Step 1: Deposit to Vault
 
-Use `deposit` to move funds from the user's wallet into their Bundie vault on Scroll.
+Use `vault.deposit` to move funds from the user's wallet into their Bundie vault on Scroll.
 
 ```
 deposit(walletAddress, asset="USDC", amount="500")
@@ -14,19 +14,19 @@ This deposits funds into the vault but doesn't allocate to any yield strategy ye
 
 ### Step 2: Allocate to a Strategy
 
-After depositing, allocate to a specific yield strategy using `strategy_deposit`.
+After depositing, allocate to a specific yield strategy using `strategy.deposit`.
 
 ```
 strategy_deposit(walletAddress, protocolId="<uuid>", amount="500")
 ```
 
-The `protocolId` comes from `check_yields` results.
+The `protocolId` comes from `yields.check` results.
 
 ### Full Deposit Flow (Recommended)
 
 For the best experience, combine with AI recommendations:
 
-1. `get_recommendation(walletAddress)` — get AI-optimized allocation
+1. `wallet.recommend(walletAddress)` — get AI-optimized allocation
 2. Confirm the bundle with the user
 3. `deposit(walletAddress, asset="USDC", amount="500")` — vault deposit
 4. For each allocation in the recommendation:
@@ -43,18 +43,18 @@ For the best experience, combine with AI recommendations:
 
 ### Withdraw from Strategy Position
 
-Use `strategy_withdraw` to pull funds from an active strategy.
+Use `strategy.withdraw` to pull funds from an active strategy.
 
 ```
 strategy_withdraw(walletAddress, positionIndex=0, amount="250", destinationChain=534352)
 ```
 
-- `positionIndex` comes from `portfolio` results
+- `positionIndex` comes from `portfolio.view` results
 - `destinationChain` is where to receive the funds (Scroll=534352, Base=8453, etc.)
 
 ### Withdraw from Vault
 
-After strategy withdrawal completes, use `withdraw` to move funds back to the user's wallet.
+After strategy withdrawal completes, use `vault.withdraw` to move funds back to the user's wallet.
 
 ```
 withdraw(walletAddress, asset="USDC", amount="250")
