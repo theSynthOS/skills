@@ -8,7 +8,7 @@ metadata:
   homepage: https://bundie.fi
   documentation: https://docs.bundie.fi/docs/ai/overview
   mcp-server: https://mcp.bundie.fi/mcp
-  smithery: https://smithery.ai/server/Bundie/yield
+  smithery: https://smithery.ai/server/bundie-fi/yield
 ---
 
 # Bundie Yield

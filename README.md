@@ -13,7 +13,7 @@ For developers integrating Bundie yield routing into their own agents and applic
 ## Install
 
 ```bash
-npx skills add Bundie/skills
+npx skills add bundie-fi/skills
 ```
 
 Works with Claude Code, Cursor, OpenAI Codex, OpenCode, and any tool supporting the [Agent Skills](https://agentskills.io) specification.
@@ -33,11 +33,11 @@ These skills work best with the Bundie MCP server connected. No API keys needed:
 }
 ```
 
-Or install via [Smithery](https://smithery.ai/server/Bundie/yield).
+Or install via [Smithery](https://smithery.ai/server/bundie-fi/yield).
 
 ## Links
 
 - [Website](https://bundie.fi)
 - [Documentation](https://docs.bundie.fi/docs/ai/overview)
 - [npm](https://www.npmjs.com/package/@bundie/mcp)
-- [Smithery](https://smithery.ai/server/Bundie/yield)
+- [Smithery](https://smithery.ai/server/bundie-fi/yield)

@@ -88,7 +88,7 @@ An agent with stop-loss and risk monitoring:
 ```
 Your Agent / Application
     │
-    ├─ Install: npx skills add Bundie/mcp
+    ├─ Install: npx skills add bundie-fi/mcp
     │  or: Add MCP server to config
     │
     ├─ Read:  bundie_check_yields, bundie_portfolio
