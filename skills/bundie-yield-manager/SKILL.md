@@ -1,7 +1,7 @@
 ---
 name: bundie-yield-manager
 description: Manage DeFi yield through Bundie. Deposit into AI-optimized yield bundles, analyze wallets for risk profiling, get personalized recommendations via bull/bear/moderator debate, monitor positions, rebalance portfolios, and set rules — all through conversation. Works across EVM chains. Requires Bundie MCP server connection.
-allowed-tools: bundie__bundie_check_yields bundie__bundie_portfolio bundie__bundie_deposit bundie__bundie_withdraw bundie__bundie_strategy_deposit bundie__bundie_strategy_withdraw bundie__bundie_get_recommendation bundie__bundie_analyze_wallet bundie__bundie_rebalance bundie__bundie_set_preferences bundie__bundie_migrate bundie__bundie_get_risk_scores
+allowed-tools: bundie__check_yields bundie__portfolio bundie__deposit bundie__withdraw bundie__strategy_deposit bundie__strategy_withdraw bundie__get_recommendation bundie__analyze_wallet bundie__rebalance bundie__set_preferences bundie__migrate bundie__get_risk_scores
 compatibility: Requires Bundie MCP server. Connect to hosted server (no API keys needed) or self-host via npm @bundie/mcp.
 metadata:
   category: finance
@@ -47,17 +47,17 @@ Connect the Bundie MCP server (no API keys needed):
 
 1. Always confirm deposit/withdraw amounts with the user before executing
 2. Show risk scores alongside APY — never recommend on APY alone
-3. When user asks "where to earn yield", call `bundie_get_recommendation` (not just `bundie_check_yields`)
+3. When user asks "where to earn yield", call `get_recommendation` (not just `check_yields`)
 4. Amounts are human-readable (e.g., "100 USDC", not "100000000")
 5. Default chain is Scroll (534352) unless user specifies otherwise
-6. For first-time users, suggest `bundie_analyze_wallet` before recommendations
+6. For first-time users, suggest `analyze_wallet` before recommendations
 7. Cross-chain operations take 5-15 minutes to settle via LayerZero — always inform the user
 
 ## Quick Start Flow
 
 For a new user asking about yield:
 
-1. `bundie_analyze_wallet` — understand their risk profile
-2. `bundie_get_recommendation` — AI-optimized bundle
+1. `analyze_wallet` — understand their risk profile
+2. `get_recommendation` — AI-optimized bundle
 3. Confirm with user
-4. `bundie_deposit` + `bundie_strategy_deposit` — execute
+4. `deposit` + `strategy_deposit` — execute

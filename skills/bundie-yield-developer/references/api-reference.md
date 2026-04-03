@@ -4,7 +4,7 @@
 
 ### Read-Only Tools
 
-#### `bundie_check_yields`
+#### `check_yields`
 Browse current DeFi yield opportunities across EVM chains.
 
 **Inputs:**
@@ -16,7 +16,7 @@ Browse current DeFi yield opportunities across EVM chains.
 | `sortBy` | "apy" \| "name" | No | Sort field (default: apy) |
 | `limit` | number | No | Max results (default: 10) |
 
-#### `bundie_portfolio`
+#### `portfolio`
 Check current positions, allocation breakdown, and weighted APY.
 
 **Inputs:**
@@ -27,7 +27,7 @@ Check current positions, allocation breakdown, and weighted APY.
 
 ### Write Tools
 
-#### `bundie_deposit`
+#### `deposit`
 Deposit assets into Bundie vault.
 
 **Inputs:**
@@ -38,7 +38,7 @@ Deposit assets into Bundie vault.
 | `amount` | string | Yes | Human-readable amount (e.g., "100.5") |
 | `chainId` | number | No | Chain ID (default: 534352) |
 
-#### `bundie_withdraw`
+#### `withdraw`
 Withdraw assets from Bundie vault.
 
 **Inputs:**
@@ -50,7 +50,7 @@ Withdraw assets from Bundie vault.
 | `recipientAddress` | string | No | Withdraw to different address |
 | `chainId` | number | No | Chain ID (default: 534352) |
 
-#### `bundie_strategy_deposit`
+#### `strategy_deposit`
 Deposit into a specific cross-chain yield strategy.
 
 **Inputs:**
@@ -62,7 +62,7 @@ Deposit into a specific cross-chain yield strategy.
 | `asset` | string | No | Token symbol (default: USDC) |
 | `chainId` | number | No | Chain ID (default: 534352) |
 
-#### `bundie_strategy_withdraw`
+#### `strategy_withdraw`
 Withdraw from a specific strategy position.
 
 **Inputs:**
@@ -77,7 +77,7 @@ Withdraw from a specific strategy position.
 
 ### AI/Composed Tools
 
-#### `bundie_analyze_wallet`
+#### `analyze_wallet`
 Full AI wallet analysis — risk profile, behavior, positions, idle assets.
 
 **Inputs:**
@@ -87,7 +87,7 @@ Full AI wallet analysis — risk profile, behavior, positions, idle assets.
 
 **Note:** Takes 1-3 minutes for new wallets. Results cached for 30 days.
 
-#### `bundie_get_recommendation`
+#### `get_recommendation`
 AI-recommended diversified yield bundle via bull/bear/moderator debate.
 
 **Inputs:**
@@ -101,7 +101,7 @@ AI-recommended diversified yield bundle via bull/bear/moderator debate.
 | `bundleSize` | number | No | Strategies per bundle (1-10) |
 | `excludeUSX` | boolean | No | Exclude USX token |
 
-#### `bundie_rebalance`
+#### `rebalance`
 Compare current vs optimal allocation with optional auto-execute.
 
 **Inputs:**
@@ -111,7 +111,7 @@ Compare current vs optimal allocation with optional auto-execute.
 | `chainId` | number | No | Chain ID (default: 534352) |
 | `autoExecute` | boolean | No | Execute rebalance (default: false) |
 
-#### `bundie_migrate`
+#### `migrate`
 Find migration opportunities from external DeFi to Bundie.
 
 **Inputs:**
@@ -121,7 +121,7 @@ Find migration opportunities from external DeFi to Bundie.
 
 ### State Tool
 
-#### `bundie_set_preferences`
+#### `set_preferences`
 Set yield selection rules for the session.
 
 **Inputs:**

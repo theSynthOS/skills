@@ -4,33 +4,33 @@
 
 ### Step 1: Deposit to Vault
 
-Use `bundie_deposit` to move funds from the user's wallet into their Bundie vault on Scroll.
+Use `deposit` to move funds from the user's wallet into their Bundie vault on Scroll.
 
 ```
-bundie_deposit(walletAddress, asset="USDC", amount="500")
+deposit(walletAddress, asset="USDC", amount="500")
 ```
 
 This deposits funds into the vault but doesn't allocate to any yield strategy yet.
 
 ### Step 2: Allocate to a Strategy
 
-After depositing, allocate to a specific yield strategy using `bundie_strategy_deposit`.
+After depositing, allocate to a specific yield strategy using `strategy_deposit`.
 
 ```
-bundie_strategy_deposit(walletAddress, protocolId="<uuid>", amount="500")
+strategy_deposit(walletAddress, protocolId="<uuid>", amount="500")
 ```
 
-The `protocolId` comes from `bundie_check_yields` results.
+The `protocolId` comes from `check_yields` results.
 
 ### Full Deposit Flow (Recommended)
 
 For the best experience, combine with AI recommendations:
 
-1. `bundie_get_recommendation(walletAddress)` — get AI-optimized allocation
+1. `get_recommendation(walletAddress)` — get AI-optimized allocation
 2. Confirm the bundle with the user
-3. `bundie_deposit(walletAddress, asset="USDC", amount="500")` — vault deposit
+3. `deposit(walletAddress, asset="USDC", amount="500")` — vault deposit
 4. For each allocation in the recommendation:
-   - `bundie_strategy_deposit(walletAddress, protocolId, amount)` — deploy to strategy
+   - `strategy_deposit(walletAddress, protocolId, amount)` — deploy to strategy
 
 ### Important Notes
 
@@ -43,35 +43,35 @@ For the best experience, combine with AI recommendations:
 
 ### Withdraw from Strategy Position
 
-Use `bundie_strategy_withdraw` to pull funds from an active strategy.
+Use `strategy_withdraw` to pull funds from an active strategy.
 
 ```
-bundie_strategy_withdraw(walletAddress, positionIndex=0, amount="250", destinationChain=534352)
+strategy_withdraw(walletAddress, positionIndex=0, amount="250", destinationChain=534352)
 ```
 
-- `positionIndex` comes from `bundie_portfolio` results
+- `positionIndex` comes from `portfolio` results
 - `destinationChain` is where to receive the funds (Scroll=534352, Base=8453, etc.)
 
 ### Withdraw from Vault
 
-After strategy withdrawal completes, use `bundie_withdraw` to move funds back to the user's wallet.
+After strategy withdrawal completes, use `withdraw` to move funds back to the user's wallet.
 
 ```
-bundie_withdraw(walletAddress, asset="USDC", amount="250")
+withdraw(walletAddress, asset="USDC", amount="250")
 ```
 
 ### Withdraw to Different Address
 
 ```
-bundie_withdraw(walletAddress, asset="USDC", amount="250", recipientAddress="0x...")
+withdraw(walletAddress, asset="USDC", amount="250", recipientAddress="0x...")
 ```
 
 ### Full Withdrawal Flow
 
-1. `bundie_portfolio(walletAddress)` — see current positions
-2. `bundie_strategy_withdraw(walletAddress, positionIndex, amount, destinationChain)` — pull from strategy
+1. `portfolio(walletAddress)` — see current positions
+2. `strategy_withdraw(walletAddress, positionIndex, amount, destinationChain)` — pull from strategy
 3. Wait for cross-chain settlement if applicable (5-15 min)
-4. `bundie_withdraw(walletAddress, asset, amount)` — move to wallet
+4. `withdraw(walletAddress, asset, amount)` — move to wallet
 
 ## Edge Cases
 

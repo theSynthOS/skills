@@ -2,10 +2,10 @@
 
 ## Getting AI Recommendations
 
-Use `bundie_get_recommendation` to get a personalized yield bundle.
+Use `get_recommendation` to get a personalized yield bundle.
 
 ```
-bundie_get_recommendation(walletAddress="0x...")
+get_recommendation(walletAddress="0x...")
 ```
 
 ### How It Works
@@ -18,7 +18,7 @@ bundie_get_recommendation(walletAddress="0x...")
 
 Pass optional filters:
 ```
-bundie_get_recommendation(
+get_recommendation(
   walletAddress="0x...",
   tokens=["USDC"],
   minRiskScore=80,
@@ -28,7 +28,7 @@ bundie_get_recommendation(
 
 Or set persistent preferences first:
 ```
-bundie_set_preferences(
+set_preferences(
   walletAddress="0x...",
   minRiskScore=80,
   auditedOnly=true,
@@ -36,26 +36,26 @@ bundie_set_preferences(
 )
 ```
 
-Then `bundie_get_recommendation` will use those preferences automatically.
+Then `get_recommendation` will use those preferences automatically.
 
 ### Acting on Recommendations
 
 After the user approves a recommendation:
-1. `bundie_deposit` — deposit the total amount to vault
-2. For each item in the bundle, `bundie_strategy_deposit` with the allocated amount
+1. `deposit` — deposit the total amount to vault
+2. For each item in the bundle, `strategy_deposit` with the allocated amount
 
 ## Rebalancing
 
-Use `bundie_rebalance` to compare current positions vs optimal allocation.
+Use `rebalance` to compare current positions vs optimal allocation.
 
 ```
-bundie_rebalance(walletAddress="0x...")
+rebalance(walletAddress="0x...")
 ```
 
 ### Auto-Execute
 
 ```
-bundie_rebalance(walletAddress="0x...", autoExecute=true)
+rebalance(walletAddress="0x...", autoExecute=true)
 ```
 
 This will reallocate funds based on the suggestions. Only use if the user explicitly agrees.
@@ -68,10 +68,10 @@ This will reallocate funds based on the suggestions. Only use if the user explic
 
 ## Migration Opportunities
 
-Use `bundie_migrate` to find better yield vs external DeFi positions.
+Use `migrate` to find better yield vs external DeFi positions.
 
 ```
-bundie_migrate(walletAddress="0x...")
+migrate(walletAddress="0x...")
 ```
 
 Requires a prior wallet analysis. Shows:
@@ -82,10 +82,10 @@ Requires a prior wallet analysis. Shows:
 
 ## Setting Preferences
 
-Use `bundie_set_preferences` to establish rules for the session.
+Use `set_preferences` to establish rules for the session.
 
 ```
-bundie_set_preferences(
+set_preferences(
   walletAddress="0x...",
   maxAllocationPerProtocol=30,
   auditedOnly=true,
