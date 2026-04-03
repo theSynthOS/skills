@@ -2,10 +2,10 @@
 
 ## Getting AI Recommendations
 
-Use `synthos_get_recommendation` to get a personalized yield bundle.
+Use `bundie_get_recommendation` to get a personalized yield bundle.
 
 ```
-synthos_get_recommendation(walletAddress="0x...")
+bundie_get_recommendation(walletAddress="0x...")
 ```
 
 ### How It Works
@@ -18,7 +18,7 @@ synthos_get_recommendation(walletAddress="0x...")
 
 Pass optional filters:
 ```
-synthos_get_recommendation(
+bundie_get_recommendation(
   walletAddress="0x...",
   tokens=["USDC"],
   minRiskScore=80,
@@ -28,7 +28,7 @@ synthos_get_recommendation(
 
 Or set persistent preferences first:
 ```
-synthos_set_preferences(
+bundie_set_preferences(
   walletAddress="0x...",
   minRiskScore=80,
   auditedOnly=true,
@@ -36,26 +36,26 @@ synthos_set_preferences(
 )
 ```
 
-Then `synthos_get_recommendation` will use those preferences automatically.
+Then `bundie_get_recommendation` will use those preferences automatically.
 
 ### Acting on Recommendations
 
 After the user approves a recommendation:
-1. `synthos_deposit` — deposit the total amount to vault
-2. For each item in the bundle, `synthos_strategy_deposit` with the allocated amount
+1. `bundie_deposit` — deposit the total amount to vault
+2. For each item in the bundle, `bundie_strategy_deposit` with the allocated amount
 
 ## Rebalancing
 
-Use `synthos_rebalance` to compare current positions vs optimal allocation.
+Use `bundie_rebalance` to compare current positions vs optimal allocation.
 
 ```
-synthos_rebalance(walletAddress="0x...")
+bundie_rebalance(walletAddress="0x...")
 ```
 
 ### Auto-Execute
 
 ```
-synthos_rebalance(walletAddress="0x...", autoExecute=true)
+bundie_rebalance(walletAddress="0x...", autoExecute=true)
 ```
 
 This will reallocate funds based on the suggestions. Only use if the user explicitly agrees.
@@ -68,24 +68,24 @@ This will reallocate funds based on the suggestions. Only use if the user explic
 
 ## Migration Opportunities
 
-Use `synthos_migrate` to find better yield vs external DeFi positions.
+Use `bundie_migrate` to find better yield vs external DeFi positions.
 
 ```
-synthos_migrate(walletAddress="0x...")
+bundie_migrate(walletAddress="0x...")
 ```
 
 Requires a prior wallet analysis. Shows:
 - Current external positions with APY
-- Better SynthOS alternatives
+- Better Bundie alternatives
 - APY improvement delta
 - Idle assets that could be earning
 
 ## Setting Preferences
 
-Use `synthos_set_preferences` to establish rules for the session.
+Use `bundie_set_preferences` to establish rules for the session.
 
 ```
-synthos_set_preferences(
+bundie_set_preferences(
   walletAddress="0x...",
   maxAllocationPerProtocol=30,
   auditedOnly=true,

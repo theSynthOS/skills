@@ -1,10 +1,10 @@
-# SynthOS MCP API Reference
+# Bundie MCP API Reference
 
 ## Available Tools
 
 ### Read-Only Tools
 
-#### `synthos_check_yields`
+#### `bundie_check_yields`
 Browse current DeFi yield opportunities across EVM chains.
 
 **Inputs:**
@@ -16,7 +16,7 @@ Browse current DeFi yield opportunities across EVM chains.
 | `sortBy` | "apy" \| "name" | No | Sort field (default: apy) |
 | `limit` | number | No | Max results (default: 10) |
 
-#### `synthos_portfolio`
+#### `bundie_portfolio`
 Check current positions, allocation breakdown, and weighted APY.
 
 **Inputs:**
@@ -27,8 +27,8 @@ Check current positions, allocation breakdown, and weighted APY.
 
 ### Write Tools
 
-#### `synthos_deposit`
-Deposit assets into SynthOS vault.
+#### `bundie_deposit`
+Deposit assets into Bundie vault.
 
 **Inputs:**
 | Param | Type | Required | Description |
@@ -38,8 +38,8 @@ Deposit assets into SynthOS vault.
 | `amount` | string | Yes | Human-readable amount (e.g., "100.5") |
 | `chainId` | number | No | Chain ID (default: 534352) |
 
-#### `synthos_withdraw`
-Withdraw assets from SynthOS vault.
+#### `bundie_withdraw`
+Withdraw assets from Bundie vault.
 
 **Inputs:**
 | Param | Type | Required | Description |
@@ -50,7 +50,7 @@ Withdraw assets from SynthOS vault.
 | `recipientAddress` | string | No | Withdraw to different address |
 | `chainId` | number | No | Chain ID (default: 534352) |
 
-#### `synthos_strategy_deposit`
+#### `bundie_strategy_deposit`
 Deposit into a specific cross-chain yield strategy.
 
 **Inputs:**
@@ -62,7 +62,7 @@ Deposit into a specific cross-chain yield strategy.
 | `asset` | string | No | Token symbol (default: USDC) |
 | `chainId` | number | No | Chain ID (default: 534352) |
 
-#### `synthos_strategy_withdraw`
+#### `bundie_strategy_withdraw`
 Withdraw from a specific strategy position.
 
 **Inputs:**
@@ -77,7 +77,7 @@ Withdraw from a specific strategy position.
 
 ### AI/Composed Tools
 
-#### `synthos_analyze_wallet`
+#### `bundie_analyze_wallet`
 Full AI wallet analysis — risk profile, behavior, positions, idle assets.
 
 **Inputs:**
@@ -87,7 +87,7 @@ Full AI wallet analysis — risk profile, behavior, positions, idle assets.
 
 **Note:** Takes 1-3 minutes for new wallets. Results cached for 30 days.
 
-#### `synthos_get_recommendation`
+#### `bundie_get_recommendation`
 AI-recommended diversified yield bundle via bull/bear/moderator debate.
 
 **Inputs:**
@@ -101,7 +101,7 @@ AI-recommended diversified yield bundle via bull/bear/moderator debate.
 | `bundleSize` | number | No | Strategies per bundle (1-10) |
 | `excludeUSX` | boolean | No | Exclude USX token |
 
-#### `synthos_rebalance`
+#### `bundie_rebalance`
 Compare current vs optimal allocation with optional auto-execute.
 
 **Inputs:**
@@ -111,8 +111,8 @@ Compare current vs optimal allocation with optional auto-execute.
 | `chainId` | number | No | Chain ID (default: 534352) |
 | `autoExecute` | boolean | No | Execute rebalance (default: false) |
 
-#### `synthos_migrate`
-Find migration opportunities from external DeFi to SynthOS.
+#### `bundie_migrate`
+Find migration opportunities from external DeFi to Bundie.
 
 **Inputs:**
 | Param | Type | Required | Description |
@@ -121,7 +121,7 @@ Find migration opportunities from external DeFi to SynthOS.
 
 ### State Tool
 
-#### `synthos_set_preferences`
+#### `bundie_set_preferences`
 Set yield selection rules for the session.
 
 **Inputs:**
@@ -140,14 +140,14 @@ Set yield selection rules for the session.
 
 ### Hosted (recommended — no API keys needed)
 
-Connect to the SynthOS hosted MCP server:
+Connect to the Bundie hosted MCP server:
 
 ```json
 {
   "mcpServers": {
-    "synthos": {
+    "bundie": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.synthos.fun/mcp"]
+      "args": ["-y", "mcp-remote", "https://mcp.bundie.fi/mcp"]
     }
   }
 }
@@ -160,13 +160,13 @@ Works with Claude Desktop, Cursor, VS Code, and any MCP-compatible client.
 ```json
 {
   "mcpServers": {
-    "synthos": {
+    "bundie": {
       "command": "npx",
-      "args": ["-y", "@synthos/mcp"],
+      "args": ["-y", "@bundie/mcp"],
       "env": {
-        "BACKEND_URL": "https://backend.synthos.fun",
+        "BACKEND_URL": "https://backend.bundie.fi",
         "BACKEND_API_KEY": "your-key",
-        "ANALYZER_URL": "https://ai.synthos.fun",
+        "ANALYZER_URL": "https://ai.bundie.fi",
         "ANALYZER_API_KEY": "your-key"
       }
     }
@@ -178,11 +178,11 @@ Works with Claude Desktop, Cursor, VS Code, and any MCP-compatible client.
 
 ```bash
 TRANSPORT=http PORT=3100 \
-BACKEND_URL=https://backend.synthos.fun \
+BACKEND_URL=https://backend.bundie.fi \
 BACKEND_API_KEY=your-key \
-ANALYZER_URL=https://ai.synthos.fun \
+ANALYZER_URL=https://ai.bundie.fi \
 ANALYZER_API_KEY=your-key \
-npx @synthos/mcp
+npx @bundie/mcp
 ```
 
 Then connect MCP clients to `http://localhost:3100/mcp`.
