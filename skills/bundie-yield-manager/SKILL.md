@@ -1,7 +1,7 @@
 ---
 name: bundie-yield-manager
 description: Manage DeFi yield through Bundie. Deposit into AI-optimized yield bundles, analyze wallets for risk profiling, get personalized recommendations via bull/bear/moderator debate, monitor positions, rebalance portfolios, and set rules — all through conversation. Works across EVM chains. Requires Bundie MCP server connection.
-allowed-tools: bundie__yields.check bundie__portfolio.view bundie__vault.deposit bundie__vault.withdraw bundie__strategy.deposit bundie__strategy.withdraw bundie__wallet.recommend bundie__wallet.analyze bundie__portfolio.rebalance bundie__portfolio.preferences bundie__wallet.migrate bundie__yields.risk_scores
+allowed-tools: bundie__yields.check bundie__portfolio.view bundie__vault.deposit bundie__vault.withdraw bundie__strategy.deposit bundie__strategy.withdraw bundie__wallet.recommend bundie__wallet.analyze bundie__portfolio.rebalance bundie__portfolio.preferences bundie__wallet.migrate bundie__yields.risk_scores bundie__bridge.to_scroll bundie__bridge.status bundie__wallet.balance
 compatibility: Requires Bundie MCP server. Connect to hosted server (no API keys needed) or self-host via npm @bundie/mcp.
 metadata:
   category: finance
@@ -42,6 +42,10 @@ Connect the Bundie MCP server (no API keys needed):
 | Set preferences or rules | [references/optimize.md](references/optimize.md) | "only audited protocols", "max 30% per protocol" |
 | Browse available yields | [references/monitor.md](references/monitor.md) | "what yields are available", "highest APY" |
 | Check risk scores | [references/monitor.md](references/monitor.md) | "show risk breakdown", "which protocols are safest" |
+| User has funds on another chain | [references/deposit.md](references/deposit.md) | bridge.to_scroll → bridge.status → deposit flow |
+| "bridge from Base/Arbitrum/Tempo" | [references/deposit.md](references/deposit.md) | bridge.to_scroll |
+| "what's my balance" | [references/monitor.md](references/monitor.md) | wallet.balance (faster than wallet.analyze) |
+| "is my bridge done" / "bridge status" | [references/monitor.md](references/monitor.md) | bridge.status |
 
 ## Rules
 
@@ -61,3 +65,5 @@ For a new user asking about yield:
 2. `wallet.recommend` — AI-optimized bundle
 3. Confirm with user
 4. `vault.deposit` + `strategy.deposit` — execute
+
+For a user bridging from another chain first, use the `bridge-and-earn` prompt to trigger the full bridge → deposit flow in one step.

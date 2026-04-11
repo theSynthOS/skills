@@ -1,5 +1,14 @@
 # Portfolio Monitoring & Yield Browsing
 
+## Quick balance check
+
+Use `wallet.balance` for fast balance lookups without full analysis:
+- `wallet.balance(walletAddress)` → USDC on Scroll (default)
+- `wallet.balance(walletAddress, chainId=8453)` → USDC on Base
+- `wallet.balance(walletAddress, asset="ETH")` → ETH balance
+
+Use `wallet.analyze` only when you need full portfolio analysis and AI recommendations.
+
 ## Checking Portfolio
 
 Use `portfolio.view` to see current positions and performance.
