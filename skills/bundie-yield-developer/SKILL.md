@@ -1,7 +1,7 @@
 ---
 name: bundie-yield-developer
-description: Integrate Bundie yield routing into applications and agents. API reference for 12 MCP tools, code examples for yield agents, trading bots, DAO treasuries, and migration agents. Covers hosted and self-hosted setup.
-allowed-tools: Bash(npm:*) Bash(npx:*) bundie__yields.check bundie__portfolio.view bundie__vault.deposit bundie__vault.withdraw bundie__strategy.deposit bundie__strategy.withdraw bundie__wallet.recommend bundie__wallet.analyze bundie__portfolio.rebalance bundie__portfolio.preferences bundie__wallet.migrate bundie__yields.risk_scores
+description: Integrate Bundie yield routing into applications and agents. API reference for 16 MCP tools, code examples for yield agents, trading bots, DAO treasuries, and migration agents. Covers hosted and self-hosted setup.
+allowed-tools: Bash(npm:*) Bash(npx:*) bundie__yields.check bundie__portfolio.view bundie__vault.deposit bundie__vault.withdraw bundie__strategy.deposit bundie__strategy.withdraw bundie__wallet.recommend bundie__wallet.analyze bundie__portfolio.rebalance bundie__portfolio.preferences bundie__wallet.migrate bundie__yields.risk_scores bundie__bridge.to_scroll bundie__bridge.status bundie__wallet.balance
 compatibility: Requires Bundie MCP server. Connect to hosted server (no API keys needed) or self-host via npm @bundie/mcp.
 metadata:
   category: finance
@@ -12,7 +12,7 @@ metadata:
 
 # Bundie Developer Integration
 
-Integrate Bundie yield routing into your agents and applications. Bundie exposes 12 MCP tools for yield discovery, risk analysis, AI recommendations, deposits, withdrawals, and portfolio management.
+Integrate Bundie yield routing into your agents and applications. Bundie exposes 16 MCP tools for yield discovery, risk analysis, AI recommendations, deposits, withdrawals, portfolio management, and cross-chain bridging.
 
 ## Setup
 
@@ -66,6 +66,9 @@ npm install @bundie/mcp
 | `portfolio.rebalance` | AI | Optimal allocation comparison |
 | `wallet.migrate` | AI | External DeFi migration opportunities |
 | `portfolio.preferences` | State | Session yield rules |
+| `bridge.to_scroll` | Write | Bridge USDC/USDT from any EVM chain to Scroll |
+| `bridge.status` | Read | Check bridge transfer status |
+| `wallet.balance` | Read | Fast token balance check on any chain |
 
 See [references/api-reference.md](references/api-reference.md) for full input schemas.
 See [references/examples.md](references/examples.md) for integration patterns.

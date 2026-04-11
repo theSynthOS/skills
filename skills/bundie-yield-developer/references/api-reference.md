@@ -136,6 +136,49 @@ Set yield selection rules for the session.
 | `excludeProtocols` | string[] | No | Protocol names to exclude |
 | `preferredTokens` | string[] | No | Preferred tokens |
 
+## Bridge Tools
+
+### bridge.to_scroll
+Bridge USDC/USDT from any EVM chain to Scroll.
+
+**Input:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| walletAddress | string | yes | - | User wallet (0x...) |
+| amount | string | yes | - | Amount to bridge e.g. "5000" |
+| asset | "USDC" \| "USDT" | no | "USDC" | Token to bridge |
+| sourceChain | string | no | "base" | Chain name or ID |
+
+**Output:** `{ txHash, requestId, fees: { relayerFee, gasFee, totalFeeUsd }, estimatedTime, expectedOutput }`
+
+**Notes:**
+- Estimated time is ~5 seconds for Base/Arbitrum, ~2 minutes for Ethereum mainnet
+- Tempo USDT is not supported -- use USDC only from Tempo
+
+### bridge.status
+Check bridge transfer status.
+
+**Input:** `{ requestId: string }`
+**Output:** `{ status: "pending" | "success" | "failure", txHashes? }`
+
+**When to use:** After `bridge.to_scroll`, poll until `status = "success"` before proceeding to deposit.
+
+## Wallet Tools (updated)
+
+### wallet.balance (new)
+Fast token balance check.
+
+**Input:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| walletAddress | string | yes | - | User wallet (0x...) |
+| asset | string | no | "USDC" | USDC, USDT, or ETH |
+| chainId | number | no | 534352 | Chain ID (534352 = Scroll) |
+
+**Output:** Human-readable balance string
+
+**When to use:** Quick balance check. Much faster than `wallet.analyze`.
+
 ## MCP Server Setup
 
 ### Hosted (recommended — no API keys needed)

@@ -1,5 +1,25 @@
 # Deposit & Withdraw Workflows
 
+## Bridging to Scroll (Required if funds are on another chain)
+
+If the user's funds are on Base, Arbitrum, Tempo, Optimism, or Ethereum -- they must bridge to Scroll first.
+
+### Step-by-step bridge → deposit flow
+
+1. `wallet.balance(walletAddress, asset="USDC", chainId=8453)` -- confirm funds on source chain (8453 = Base)
+2. `bridge.to_scroll(walletAddress, amount="5000", asset="USDC", sourceChain="base")` -- bridge via Relay
+3. `bridge.status(requestId)` -- poll until status = "success" (usually ~5s for Base)
+4. `wallet.balance(walletAddress)` -- confirm USDC arrived on Scroll (chainId 534352)
+5. Continue with normal deposit flow below...
+
+### Supported source chains
+- Base (8453), Arbitrum (42161), Optimism (10), Ethereum (1), Tempo (4217), Polygon (137)
+- Tempo USDT is NOT supported -- bridge USDC only from Tempo
+
+### When NOT to bridge
+- User already has USDC on Scroll → skip to deposit flow
+- User has USDT on Tempo → tell them Relay doesn't support Tempo USDT, use USDC
+
 ## Depositing into Bundie
 
 ### Step 1: Deposit to Vault
