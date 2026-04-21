@@ -7,7 +7,7 @@ metadata:
   category: finance
   homepage: https://bundie.fi
   documentation: https://docs.bundie.fi/docs/ai/overview
-  mcp-server: https://mcp.bundie.fi/mcp
+  mcp-server: https://mcp.bundie.fi/evm
   smithery: https://smithery.ai/server/bundie/evm
 ---
 
@@ -24,7 +24,7 @@ Connect the Bundie MCP server (no API keys needed):
   "mcpServers": {
     "bundie": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.bundie.fi/mcp"]
+      "args": ["-y", "mcp-remote", "https://mcp.bundie.fi/evm"]
     }
   }
 }

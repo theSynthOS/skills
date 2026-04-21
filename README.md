@@ -27,7 +27,7 @@ These skills work best with the Bundie MCP server connected. No API keys needed:
   "mcpServers": {
     "bundie": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.bundie.fi/mcp"]
+      "args": ["-y", "mcp-remote", "https://mcp.bundie.fi/evm"]
     }
   }
 }
