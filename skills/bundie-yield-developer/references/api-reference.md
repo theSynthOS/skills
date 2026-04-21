@@ -223,7 +223,7 @@ Connect to the Bundie hosted MCP server:
   "mcpServers": {
     "bundie": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.bundie.fi/mcp"]
+      "args": ["-y", "mcp-remote", "https://mcp.bundie.fi/evm"]
     }
   }
 }

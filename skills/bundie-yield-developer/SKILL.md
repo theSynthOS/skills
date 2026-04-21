@@ -48,7 +48,7 @@ Add to your MCP config (no API keys needed):
   "mcpServers": {
     "bundie": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.bundie.fi/mcp"]
+      "args": ["-y", "mcp-remote", "https://mcp.bundie.fi/evm"]
     }
   }
 }
