@@ -1,17 +1,8 @@
 # Portfolio Monitoring & Yield Browsing
 
-## Quick balance check
-
-Use `wallet.balance` for fast balance lookups without full analysis:
-- `wallet.balance(walletAddress)` → USDC on Scroll (default)
-- `wallet.balance(walletAddress, chainId=8453)` → USDC on Base
-- `wallet.balance(walletAddress, asset="ETH")` → ETH balance
-
-Use `wallet.analyze` only when you need full portfolio analysis and AI recommendations.
-
 ## Checking Portfolio
 
-Use `portfolio.view` to see current positions and performance.
+Use `portfolio_view` to see current positions and performance.
 
 ```
 portfolio(walletAddress="0x...")
@@ -32,16 +23,16 @@ portfolio(walletAddress="0x...")
 
 ## Browsing Available Yields
 
-Use `yields.check` to explore what's available.
+Use `yields_check` to explore what's available.
 
 ```
-yields.check()
+yields_check()
 ```
 
 ### Filtering
 
 ```
-yields.check(token="USDC", minApy=0.05, chain="base", limit=5)
+yields_check(token="USDC", minApy=0.05, chain="base", limit=5)
 ```
 
 | Filter | Description | Example |
@@ -54,11 +45,11 @@ yields.check(token="USDC", minApy=0.05, chain="base", limit=5)
 
 ### When to Browse vs Recommend
 
-- **Browse** (`yields.check`): User wants to see what's available, compare options manually
-- **Recommend** (`wallet.recommend`): User wants AI to pick the best allocation for them
+- **Browse** (`yields_check`): User wants to see what's available, compare options manually
+- **Recommend** (`wallet_recommend`): User wants AI to pick the best allocation for them
 
-If the user asks "what are the best yields?" — use `yields.check`.
-If the user asks "where should I put my money?" — use `wallet.recommend`.
+If the user asks "what are the best yields?" — use `yields_check`.
+If the user asks "where should I put my money?" — use `wallet_recommend`.
 
 ## Supported Chains
 
@@ -77,14 +68,14 @@ New chains are added regularly — the MCP server dynamically passes `chainId` s
 ## Common Workflows
 
 ### "How am I doing?"
-1. `portfolio.view` — show positions and APY
+1. `portfolio_view` — show positions and APY
 2. Summarize total value, weighted APY, and yield earned
 
 ### "What's the best yield right now?"
-1. `yields.check(sortBy="apy", limit=5)` — top 5 by APY
+1. `yields_check(sortBy="apy", limit=5)` — top 5 by APY
 2. Present with risk context ("highest APY but lower risk score")
 
 ### "Am I earning the best I can?"
-1. `portfolio.view` — current positions
-2. `portfolio.rebalance` — compare vs optimal
+1. `portfolio_view` — current positions
+2. `portfolio_rebalance` — compare vs optimal
 3. Present the delta and suggest action if significant

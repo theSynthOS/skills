@@ -2,13 +2,13 @@
 name: bundie-yield
 description: Manage DeFi yield through Bundie. Deposit into AI-optimized yield bundles, analyze wallets for risk profiling, get personalized recommendations via bull/bear/moderator debate, monitor positions, rebalance portfolios, buy crypto with fiat, and set rules — all through conversation. Works across EVM chains with 13 tools and 5 workflow prompts.
 allowed-tools: bundie__yields.check bundie__portfolio.view bundie__vault.deposit bundie__vault.withdraw bundie__strategy.deposit bundie__strategy.withdraw bundie__wallet.recommend bundie__wallet.analyze bundie__portfolio.rebalance bundie__portfolio.preferences bundie__wallet.migrate bundie__yields.risk_scores bundie__yields.buy
-compatibility: Requires Bundie MCP server. Connect to hosted server (no API keys needed) or self-host via npm @bundie/mcp.
+compatibility: Requires Bundie MCP server. Connect to hosted server (no API keys needed) or self-host via npm @bundie/evm-mcp.
 metadata:
   category: finance
   homepage: https://bundie.fi
   documentation: https://docs.bundie.fi/docs/ai/overview
   mcp-server: https://mcp.bundie.fi/mcp
-  smithery: https://smithery.ai/server/bundie-fi/yield
+  smithery: https://smithery.ai/server/bundie/evm
 ---
 
 # Bundie Yield
