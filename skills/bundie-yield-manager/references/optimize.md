@@ -2,10 +2,10 @@
 
 ## Getting AI Recommendations
 
-Use `wallet.recommend` to get a personalized yield bundle.
+Use `wallet_recommend` to get a personalized yield bundle.
 
 ```
-wallet.recommend(walletAddress="0x...")
+wallet_recommend(walletAddress="0x...")
 ```
 
 ### How It Works
@@ -18,7 +18,7 @@ wallet.recommend(walletAddress="0x...")
 
 Pass optional filters:
 ```
-wallet.recommend(
+wallet_recommend(
   walletAddress="0x...",
   tokens=["USDC"],
   minRiskScore=80,
@@ -28,7 +28,7 @@ wallet.recommend(
 
 Or set persistent preferences first:
 ```
-portfolio.preferences(
+portfolio_preferences(
   walletAddress="0x...",
   minRiskScore=80,
   auditedOnly=true,
@@ -36,17 +36,17 @@ portfolio.preferences(
 )
 ```
 
-Then `wallet.recommend` will use those preferences automatically.
+Then `wallet_recommend` will use those preferences automatically.
 
 ### Acting on Recommendations
 
 After the user approves a recommendation:
-1. `vault.deposit` — deposit the total amount to vault
-2. For each item in the bundle, `strategy.deposit` with the allocated amount
+1. `vault_deposit` — deposit the total amount to vault
+2. For each item in the bundle, `strategy_deposit` with the allocated amount
 
 ## Rebalancing
 
-Use `portfolio.rebalance` to compare current positions vs optimal allocation.
+Use `portfolio_rebalance` to compare current positions vs optimal allocation.
 
 ```
 rebalance(walletAddress="0x...")
@@ -68,7 +68,7 @@ This will reallocate funds based on the suggestions. Only use if the user explic
 
 ## Migration Opportunities
 
-Use `wallet.migrate` to find better yield vs external DeFi positions.
+Use `wallet_migrate` to find better yield vs external DeFi positions.
 
 ```
 migrate(walletAddress="0x...")
@@ -82,10 +82,10 @@ Requires a prior wallet analysis. Shows:
 
 ## Setting Preferences
 
-Use `portfolio.preferences` to establish rules for the session.
+Use `portfolio_preferences` to establish rules for the session.
 
 ```
-portfolio.preferences(
+portfolio_preferences(
   walletAddress="0x...",
   maxAllocationPerProtocol=30,
   auditedOnly=true,

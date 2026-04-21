@@ -33,11 +33,11 @@ These skills work best with the Bundie MCP server connected. No API keys needed:
 }
 ```
 
-Or install via [Smithery](https://smithery.ai/servers/bundie/yield).
+Or install via [Smithery](https://smithery.ai/servers/bundie/evm).
 
 ## Links
 
 - [Website](https://bundie.fi)
 - [Documentation](https://docs.bundie.fi/docs/ai/overview)
-- [npm](https://www.npmjs.com/package/@bundie/mcp)
-- [Smithery](https://smithery.ai/servers/bundie/yield)
+- [npm](https://www.npmjs.com/package/@bundie/evm-mcp)
+- [Smithery](https://smithery.ai/servers/bundie/evm)
