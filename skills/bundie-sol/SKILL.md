@@ -78,7 +78,25 @@ Minimum: 1 USDC per strategy deposit; any positive amount for predictions.
 
 ## Strategy-creator
 
-Composes DeFi strategies. In MVP, strategies deposit into Kamino USDC lending through Beethoven. Post-hackathon adds more Beethoven protocols (Jupiter Earn, Marginfi, Drift) and a perp action trait for delta-neutral funding capture.
+Composes DeFi strategies. The on-chain program now wraps **33 Beethoven
+protocols on devnet** (browse them at https://app.bundie.fi/protocols):
+
+- **Lending / vaults (9):** Kamino, Jupiter Earn, Drift, MarginFi, Marinade,
+  Solend, SPL Stake Pool (covers BlazeStake / Jito-SOL / custom LSTs),
+  Drift Vaults, Meteora Dynamic Vaults
+- **DEX swaps (22):** Orca Whirlpools, Raydium CPMM/CLMM/AMM v4,
+  Meteora DLMM/DAMM v2, Phoenix, OpenBook v2, Manifest, Aldrin v1+v2,
+  Heaven, Hadron, Gamma, Futarchy, Omnipair, Perena, Scale AMM/VMM,
+  SolFi v1+v2
+- **Perpetuals (2):** Mango v4, Zeta Markets
+
+Pass `--protocol <name>` (e.g. `--protocol marinade`, `--protocol orca-whirlpools`,
+`--protocol mango-perps`) to target a specific one. Default remains
+`--protocol kamino` for backwards compatibility.
+
+A strategy can compose multiple protocols at once — issue subsequent
+`rebalance` calls (CLI command pending) to deposit / swap / open perps
+inside the strategy's wallet PDA.
 
 ### Mode 1 — Human-triggered in Claude Desktop
 
@@ -438,20 +456,25 @@ All commands print errors to stderr and exit with code 1.
 
 # Seeded addresses (devnet)
 
-Useful for immediate testing without creating accounts.
-
-| Resource | Address |
-|---|---|
-| Kamino Seed Strategy | `93amC41qp6YfTQwsugjgRG21eUtmbqiCx4VJjzE2xZYF` |
-| Seeded Prediction Market | `2XfBNnZ5YEH23tB4QdCNzXu2bJmeY5WwmMuikGgZP8wu` |
+After the 2026-04-23 vanity-address migration, all earlier seeded
+strategies and markets were created against the old `Y13k*` programs and
+are now orphaned. Run `bundie-sol list-strategies` for a fresh list of
+strategies on the new `Bun4*` programs.
 
 # Program addresses (devnet)
 
 | Program | Address |
 |---|---|
-| Strategy Token Program (pinocchio) | `Y13kaQZ6NJgyfLiL5VjZ9k5QaFJnw4REM4A5Gsfg9VV` |
-| Prediction Market Program (Anchor) | `Y13kynHKA6nfgDtYReVTuPZEVki6NmY9dYDihQT8j7i` |
+| Strategy Token Program (pinocchio) | `Bun4tBew11dWjx1mRuMmJZFmxsGsxYSYhdfe1w7JaHVm` |
+| Prediction Market Program (Anchor) | `Bun4h9qr4NnQNa5qPePK48cP63R59hHSQDt8ipge4fT4` |
 | Devnet USDC Mint | `4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU` |
+
+The prediction-market IDL is uploaded on chain (anchor IDL PDA
+`9PTHYfhdxmQGunPLsUheQbRDka8UnzTnfkCn7GA4DDbf`); strategy-token is Pinocchio
+and exposes its layout via the `@bundie/sol-cli` source rather than an IDL.
+
+The previous `Y13k*` program IDs are abandoned (rent-locked, no upgrade
+path). Any client still pinned to those returns empty results.
 
 # Devnet resources
 
@@ -459,7 +482,7 @@ Useful for immediate testing without creating accounts.
 |---|---|
 | Devnet USDC faucet | https://faucet.circle.com |
 | Devnet SOL faucet | https://faucet.solana.com |
-| Devnet explorer | https://explorer.solana.com/?cluster=devnet |
+| Devnet explorer (orbmarkets) | https://orbmarkets.io/?cluster=devnet |
 
 ---
 
@@ -467,7 +490,7 @@ Useful for immediate testing without creating accounts.
 
 - **Webapp (`app.bundie.fi`)** — human surface. Backers and predictors use this; it wraps as a Seeker TWA for dApp Store distribution. Does not expose strategy or market creation.
 - **EVM sibling (`@bundie/evm-mcp`)** — Bundie's EVM yield routing MCP, pre-existing. Different product (vault routing, not strategy composition). Connected via `mcp.bundie.fi/evm`.
-- **Solana MCP** — deferred to post-hackathon. CLI + this skills file cover both Mode 1 and Mode 2 for MVP; MCP is a UX polish for Claude Desktop users, not a new capability.
+- **Solana MCP** — deferred. CLI + this skills file cover both Mode 1 and Mode 2 today; MCP is a UX polish for Claude Desktop users, not a new capability.
 
 # License
 
