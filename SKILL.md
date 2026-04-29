@@ -1,6 +1,6 @@
 ---
 name: bundie-yield
-description: Manage DeFi yield through Bundie. Deposit into AI-optimized yield bundles, analyze wallets for risk profiling, get personalized recommendations via bull/bear/moderator debate, monitor positions, rebalance portfolios, buy crypto with fiat, and set rules — all through conversation. Works across EVM chains with 13 tools and 5 workflow prompts.
+description: Manage DeFi yield through Bundie. Deposit into AI-optimized yield bundles, analyze wallets for risk profiling, get personalized recommendations via bull/bear/moderator debate, monitor positions, rebalance portfolios, buy crypto with fiat, and set rules, all through conversation. Works across EVM chains with 13 tools and 5 workflow prompts.
 allowed-tools: bundie__yields.check bundie__portfolio.view bundie__vault.deposit bundie__vault.withdraw bundie__strategy.deposit bundie__strategy.withdraw bundie__wallet.recommend bundie__wallet.analyze bundie__portfolio.rebalance bundie__portfolio.preferences bundie__wallet.migrate bundie__yields.risk_scores bundie__yields.buy
 compatibility: Requires Bundie MCP server. Connect to hosted server (no API keys needed) or self-host via npm @bundie/evm-mcp.
 metadata:
@@ -50,18 +50,18 @@ Connect the Bundie MCP server (no API keys needed):
 ## Rules
 
 1. Always confirm deposit/withdraw amounts with the user before executing
-2. Show risk scores alongside APY — never recommend on APY alone
+2. Show risk scores alongside APY (never recommend on APY alone)
 3. When user asks "where to earn yield", call `wallet.recommend` (not just `yields.check`)
 4. Amounts are human-readable (e.g., "100 USDC", not "100000000")
-5. Default chain is Scroll (534352) unless user specifies otherwise
+5. Always confirm the chain with the user. Bundie supports multiple EVM chains (Base, Arbitrum, Scroll, Optimism, etc.) and accounts live per chain.
 6. For first-time users, suggest `wallet.analyze` before recommendations
-7. Cross-chain operations take 5-15 minutes to settle via LayerZero — always inform the user
+7. Cross-chain operations take 5-15 minutes to settle via LayerZero, always inform the user
 
 ## Quick Start Flow
 
 For a new user asking about yield:
 
-1. `wallet.analyze` — understand their risk profile
-2. `wallet.recommend` — AI-optimized bundle
+1. `wallet.analyze` to understand their risk profile
+2. `wallet.recommend` for an AI-optimized bundle
 3. Confirm with user
-4. `vault.deposit` + `strategy.deposit` — execute
+4. `vault.deposit` + `strategy.deposit` to execute

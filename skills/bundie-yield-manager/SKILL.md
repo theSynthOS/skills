@@ -1,7 +1,7 @@
 ---
 name: bundie-yield-manager
 description: >
-  Manage DeFi yield through Bundie — deposit into AI-optimized yield bundles,
+  Manage DeFi yield through Bundie. Deposit into AI-optimized yield bundles,
   analyze wallets, get risk-scored recommendations, and monitor positions across
   EVM chains. Use when user asks about earning yield, DeFi returns, idle crypto,
   or managing investments.
@@ -20,7 +20,7 @@ allowed-tools: >
   bundie__wallet_recommend,
   bundie__wallet_migrate,
   bundie__wallet_balance,
-  bundie__bridge_to_scroll,
+  bundie__bridge,
   bundie__bridge_status
 ---
 
@@ -40,23 +40,23 @@ Bundie is a yield routing protocol that indexes yield across EVM chains, risk-sc
 | Find migration opportunities | [optimize.md](references/optimize.md) | "any better yields outside", "migration opportunities", "compare yields" |
 | Set preferences or rules | [optimize.md](references/optimize.md) | "only audited protocols", "max 30% per protocol", "no risky vaults" |
 | Browse available yields | [monitor.md](references/monitor.md) | "what yields are available", "show me yield options", "highest APY" |
-| Bridge funds to Scroll | [deposit.md](references/deposit.md) | "bridge from Base", "move USDC to Scroll", "bring funds from Arbitrum" |
-| Check wallet balance | [monitor.md](references/monitor.md) | "how much USDC do I have", "what's my balance on Scroll" |
+| Bridge funds between chains | [deposit.md](references/deposit.md) | "bridge from Base to Arbitrum", "move USDC to Scroll", "send funds to Optimism" |
+| Check wallet balance | [monitor.md](references/monitor.md) | "how much USDC do I have", "what's my balance on Base" |
 | Buy crypto with card | [deposit.md](references/deposit.md) | "buy USDC", "purchase with credit card", "onramp" |
 
 ## Key Rules
 
 1. **Always confirm** deposit/withdraw amounts with the user before executing
-2. **Show risk scores alongside APY** — never recommend on APY alone
+2. **Show risk scores alongside APY** (never recommend on APY alone)
 3. When user asks "where to earn yield", call `wallet_recommend` (not just `yields_check`)
 4. **Amounts are human-readable** (e.g., "100 USDC", not "100000000")
-5. Default chain is Scroll (534352) unless user specifies otherwise
+5. **Always confirm the chain with the user.** Bundie supports multiple EVM chains (Base, Arbitrum, Scroll, Optimism, etc.) and accounts live per chain.
 6. For first-time users, suggest `wallet_analyze` before recommendations
-7. Cross-chain operations take 5-15 minutes to settle via LayerZero — always inform the user
+7. Cross-chain operations take 5-15 minutes to settle via LayerZero, always inform the user
 
 ## Quick Start Flow
 
 For a new user asking about yield:
-1. `wallet_analyze` — understand their risk profile
-2. `wallet_recommend` — AI-optimized bundle
+1. `wallet_analyze` to understand their risk profile
+2. `wallet_recommend` for an AI-optimized bundle
 3. Confirm with user, then `vault_deposit` + `strategy_deposit`
