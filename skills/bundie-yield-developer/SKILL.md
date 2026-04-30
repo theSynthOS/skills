@@ -21,7 +21,7 @@ allowed-tools: >
   bundie__wallet_recommend,
   bundie__wallet_migrate,
   bundie__wallet_balance,
-  bundie__bridge_to_scroll,
+  bundie__bridge,
   bundie__bridge_status
 ---
 

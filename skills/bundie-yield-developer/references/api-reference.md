@@ -4,7 +4,7 @@
 
 Bundie v2 supports two ways to identify the calling wallet:
 
-**OAuth (recommended):** Sign in once at `https://auth.bundie.fi/authorize?redirect_uri=<your_callback>&state=<nonce>`. After sign-in, the MCP session carries your wallet automatically — no `walletAddress` needed per call.
+**OAuth (recommended):** Sign in once at `https://auth.bundie.fi/authorize?redirect_uri=<your_callback>&state=<nonce>`. After sign-in, the MCP session carries your wallet automatically (no `walletAddress` needed per call).
 
 **Explicit:** Pass `walletAddress` directly on each tool call. Useful for server-to-server integrations.
 
@@ -29,7 +29,7 @@ Browse current DeFi yield opportunities across EVM chains.
 | `limit` | number | No | Max results (default: 10) |
 
 #### `yields_risk_scores`
-Detailed risk component breakdown per protocol — security, liquidity, maturity, centralization.
+Detailed risk component breakdown per protocol: security, liquidity, maturity, centralization.
 
 **Inputs:**
 | Param | Type | Required | Description |
@@ -44,8 +44,8 @@ Check current positions, allocation breakdown, and weighted APY.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Ethereum address — omit if signed in via OAuth |
-| `chainId` | number | No | Chain ID (default: 534352) |
+| `walletAddress` | string | No | Ethereum address (omit if signed in via OAuth) |
+| `chainId` | number | Yes | Chain ID. No default, must be specified (e.g., 8453 for Base, 42161 for Arbitrum, 534352 for Scroll) |
 
 #### `wallet_balance`
 Check token balance of a wallet on a specific chain.
@@ -53,9 +53,9 @@ Check token balance of a wallet on a specific chain.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Ethereum address — omit if signed in via OAuth |
+| `walletAddress` | string | No | Ethereum address (omit if signed in via OAuth) |
 | `token` | string | No | Token symbol (default: USDC) |
-| `chainId` | number | No | Chain ID (default: 534352 = Scroll) |
+| `chainId` | number | Yes | Chain ID. No default, must be specified (e.g., 8453 for Base, 42161 for Arbitrum, 534352 for Scroll) |
 
 #### `bridge_status`
 Check the status of a Relay Protocol bridge request.
@@ -63,7 +63,7 @@ Check the status of a Relay Protocol bridge request.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `requestId` | string | Yes | Request ID returned by `bridge_to_scroll` |
+| `requestId` | string | Yes | Request ID returned by `bridge` |
 
 ### Write Tools
 
@@ -73,10 +73,10 @@ Deposit assets into Bundie vault.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Your wallet address — omit if signed in via OAuth |
+| `walletAddress` | string | No | Your wallet address (omit if signed in via OAuth) |
 | `asset` | string | Yes | Token symbol or address |
 | `amount` | string | Yes | Human-readable amount (e.g., "100.5") |
-| `chainId` | number | No | Chain ID (default: 534352) |
+| `chainId` | number | Yes | Chain ID. No default, must be specified (e.g., 8453 for Base, 42161 for Arbitrum, 534352 for Scroll) |
 
 #### `vault_withdraw`
 Withdraw assets from Bundie vault.
@@ -84,11 +84,11 @@ Withdraw assets from Bundie vault.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Your wallet address — omit if signed in via OAuth |
+| `walletAddress` | string | No | Your wallet address (omit if signed in via OAuth) |
 | `asset` | string | Yes | Token symbol or address |
 | `amount` | string | Yes | Human-readable amount |
 | `recipientAddress` | string | No | Withdraw to different address |
-| `chainId` | number | No | Chain ID (default: 534352) |
+| `chainId` | number | Yes | Chain ID. No default, must be specified (e.g., 8453 for Base, 42161 for Arbitrum, 534352 for Scroll) |
 
 #### `strategy_deposit`
 Deposit into a specific cross-chain yield strategy.
@@ -96,11 +96,11 @@ Deposit into a specific cross-chain yield strategy.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Your wallet address — omit if signed in via OAuth |
+| `walletAddress` | string | No | Your wallet address (omit if signed in via OAuth) |
 | `protocolId` | string | Yes | Protocol UUID from yields.check |
 | `amount` | string | Yes | Human-readable amount |
 | `asset` | string | No | Token symbol (default: USDC) |
-| `chainId` | number | No | Chain ID (default: 534352) |
+| `chainId` | number | Yes | Chain ID. No default, must be specified (e.g., 8453 for Base, 42161 for Arbitrum, 534352 for Scroll) |
 
 #### `strategy_withdraw`
 Withdraw from a specific strategy position.
@@ -108,22 +108,23 @@ Withdraw from a specific strategy position.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Your wallet address — omit if signed in via OAuth |
+| `walletAddress` | string | No | Your wallet address (omit if signed in via OAuth) |
 | `positionIndex` | number | Yes | Position index from portfolio |
 | `amount` | string | Yes | Human-readable amount |
 | `asset` | string | No | Token symbol (default: USDC) |
 | `destinationChain` | number | Yes | Chain ID to receive funds |
-| `chainId` | number | No | Source chain ID (default: 534352) |
+| `chainId` | number | Yes | Source chain ID. No default, must be specified (e.g., 8453 for Base, 42161 for Arbitrum, 534352 for Scroll) |
 
-#### `bridge_to_scroll`
-Bridge USDC or USDT from any supported chain to Scroll via Relay Protocol.
+#### `bridge`
+Bridge USDC or USDT between any supported chains via Relay Protocol.
 
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Your wallet address — omit if signed in via OAuth |
-| `fromChain` | string | Yes | Source chain (base, arbitrum, optimism, ethereum, polygon) |
-| `token` | string | No | Token to bridge (default: USDC) |
+| `walletAddress` | string | No | Your wallet address (omit if signed in via OAuth) |
+| `sourceChain` | string | Yes | Source chain (base, arbitrum, optimism, ethereum, polygon, scroll, etc.) or chain ID |
+| `destinationChain` | string | Yes | Destination chain (base, arbitrum, optimism, ethereum, polygon, scroll, etc.) or chain ID |
+| `asset` | string | No | Token to bridge (default: USDC) |
 | `amount` | string | Yes | Human-readable amount (e.g., "100") |
 
 #### `yields_buy`
@@ -132,7 +133,7 @@ Generate a payment link to buy USDC/USDT with a credit card via Ramp Network or 
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Destination wallet — omit if signed in via OAuth |
+| `walletAddress` | string | No | Destination wallet (omit if signed in via OAuth) |
 | `token` | string | No | Token to buy (USDC or USDT, default: USDC) |
 | `amount` | number | No | Fiat amount in USD |
 | `provider` | "ramp" \| "transak" | No | Preferred provider |
@@ -140,12 +141,12 @@ Generate a payment link to buy USDC/USDT with a credit card via Ramp Network or 
 ### AI/Composed Tools
 
 #### `wallet_analyze`
-Full AI wallet analysis — risk profile, behavior, positions, idle assets.
+Full AI wallet analysis covering risk profile, behavior, positions, and idle assets.
 
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Wallet to analyze — omit if signed in via OAuth |
+| `walletAddress` | string | No | Wallet to analyze (omit if signed in via OAuth) |
 
 **Note:** Takes 1-3 minutes for new wallets. Results cached for 30 days.
 
@@ -155,7 +156,7 @@ AI-recommended diversified yield bundle via bull/bear/moderator debate.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Wallet to recommend for — omit if signed in via OAuth |
+| `walletAddress` | string | No | Wallet to recommend for (omit if signed in via OAuth) |
 | `tokens` | string[] | No | Filter by tokens |
 | `chains` | number[] | No | Filter by chain IDs |
 | `minRiskScore` | number | No | Min risk score (0-100) |
@@ -169,8 +170,8 @@ Compare current vs optimal allocation with optional auto-execute.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Your wallet address — omit if signed in via OAuth |
-| `chainId` | number | No | Chain ID (default: 534352) |
+| `walletAddress` | string | No | Your wallet address (omit if signed in via OAuth) |
+| `chainId` | number | Yes | Chain ID. No default, must be specified (e.g., 8453 for Base, 42161 for Arbitrum, 534352 for Scroll) |
 | `autoExecute` | boolean | No | Execute rebalance (default: false) |
 
 #### `wallet_migrate`
@@ -179,7 +180,7 @@ Find migration opportunities from external DeFi to Bundie.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Wallet to check — omit if signed in via OAuth |
+| `walletAddress` | string | No | Wallet to check (omit if signed in via OAuth) |
 
 ### State Tool
 
@@ -189,7 +190,7 @@ Set yield selection rules for the session.
 **Inputs:**
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `walletAddress` | string | No | Wallet address — omit if signed in via OAuth |
+| `walletAddress` | string | No | Wallet address (omit if signed in via OAuth) |
 | `maxAllocationPerProtocol` | number | No | Max % per protocol |
 | `auditedOnly` | boolean | No | Only audited protocols |
 | `minRiskScore` | number | No | Min risk score (0-100) |
@@ -214,7 +215,7 @@ Payments use the [x402 protocol](https://x402.org). Compatible MCP clients handl
 
 ## MCP Server Setup
 
-### Hosted (recommended — no API keys needed)
+### Hosted (recommended, no API keys needed)
 
 Connect to the Bundie hosted MCP server:
 

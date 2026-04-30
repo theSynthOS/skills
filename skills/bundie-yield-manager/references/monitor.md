@@ -48,8 +48,8 @@ yields_check(token="USDC", minApy=0.05, chain="base", limit=5)
 - **Browse** (`yields_check`): User wants to see what's available, compare options manually
 - **Recommend** (`wallet_recommend`): User wants AI to pick the best allocation for them
 
-If the user asks "what are the best yields?" — use `yields_check`.
-If the user asks "where should I put my money?" — use `wallet_recommend`.
+If the user asks "what are the best yields?", use `yields_check`.
+If the user asks "where should I put my money?", use `wallet_recommend`.
 
 ## Supported Chains
 
@@ -57,25 +57,25 @@ Bundie supports any EVM chain configured in the backend. Currently active:
 
 | Chain | Chain ID | Common Protocols |
 |-------|----------|-----------------|
-| Scroll | 534352 | USX, various |
 | Base | 8453 | Morpho, Moonwell |
 | Arbitrum | 42161 | Various |
 | Optimism | 10 | Moonwell |
+| Scroll | 534352 | USX, various |
 | Mode | 34443 | Various |
 
-New chains are added regularly — the MCP server dynamically passes `chainId` so new chains work automatically.
+New chains are added regularly; the MCP server dynamically passes `chainId` so new chains work automatically.
 
 ## Common Workflows
 
 ### "How am I doing?"
-1. `portfolio_view` — show positions and APY
+1. `portfolio_view` to show positions and APY
 2. Summarize total value, weighted APY, and yield earned
 
 ### "What's the best yield right now?"
-1. `yields_check(sortBy="apy", limit=5)` — top 5 by APY
+1. `yields_check(sortBy="apy", limit=5)` for the top 5 by APY
 2. Present with risk context ("highest APY but lower risk score")
 
 ### "Am I earning the best I can?"
-1. `portfolio_view` — current positions
-2. `portfolio_rebalance` — compare vs optimal
+1. `portfolio_view` for current positions
+2. `portfolio_rebalance` to compare vs optimal
 3. Present the delta and suggest action if significant
