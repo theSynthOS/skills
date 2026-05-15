@@ -46,6 +46,11 @@ Connect the Bundie MCP server (no API keys needed):
 | Buy crypto with fiat | [skills/bundie-yield-manager/references/deposit.md](skills/bundie-yield-manager/references/deposit.md) | "I want to buy USDC", "invest $500" |
 | API reference | [skills/bundie-yield-developer/references/api-reference.md](skills/bundie-yield-developer/references/api-reference.md) | "show me the API", "how to integrate" |
 | Integration examples | [skills/bundie-yield-developer/references/examples.md](skills/bundie-yield-developer/references/examples.md) | "build a yield agent", "DAO treasury example" |
+| Discover Bundie oracle markets | [skills/bundie-oracle-developer/references/discover.md](skills/bundie-oracle-developer/references/discover.md) | "what can Bundie price for me", "list event markets" |
+| Read a live consensus price | [skills/bundie-oracle-developer/references/read.md](skills/bundie-oracle-developer/references/read.md) | "read YES probability", "wire read_price into my agent" |
+| Build a Bundie circuit breaker | [skills/bundie-oracle-developer/references/circuit-breaker.md](skills/bundie-oracle-developer/references/circuit-breaker.md) | "de-risk on depeg signal", "Big Mario circuit breaker" |
+| Verify a Bundie attestation | [skills/bundie-oracle-developer/references/verify-attestation.md](skills/bundie-oracle-developer/references/verify-attestation.md) | "verify the signature", "trust the read" |
+| Judge a Bundie resolver | [skills/bundie-oracle-developer/references/resolver-trust.md](skills/bundie-oracle-developer/references/resolver-trust.md) | "is this resolver reliable", "check track record" |
 
 ## Rules
 
