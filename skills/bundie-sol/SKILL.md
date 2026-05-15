@@ -79,7 +79,7 @@ Minimum: 1 USDC per strategy deposit; any positive amount for predictions.
 ## Strategy-creator
 
 Composes DeFi strategies. The on-chain program now wraps **33 Beethoven
-protocols on devnet** (browse them at https://app.bundie.fi/protocols):
+protocols on devnet** (browse them at https://app.solana.bundie.fi/protocols):
 
 - **Lending / vaults (9):** Kamino, Jupiter Earn, Drift, MarginFi, Marinade,
   Solend, SPL Stake Pool (covers BlazeStake / Jito-SOL / custom LSTs),
@@ -488,7 +488,7 @@ path). Any client still pinned to those returns empty results.
 
 # Related surfaces
 
-- **Webapp (`app.bundie.fi`)** — human surface. Backers and predictors use this; it wraps as a Seeker TWA for dApp Store distribution. Does not expose strategy or market creation.
+- **Webapp (`app.solana.bundie.fi`)** — human surface. Backers and predictors use this; it wraps as a Seeker TWA for dApp Store distribution. Does not expose strategy or market creation.
 - **EVM sibling (`@bundie/evm-mcp`)** — Bundie's EVM yield routing MCP, pre-existing. Different product (vault routing, not strategy composition). Connected via `mcp.bundie.fi/evm`.
 - **Solana MCP** — deferred. CLI + this skills file cover both Mode 1 and Mode 2 today; MCP is a UX polish for Claude Desktop users, not a new capability.
 

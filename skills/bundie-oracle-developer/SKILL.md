@@ -17,7 +17,7 @@ allowed-tools: >
 compatibility: Requires Bundie Solana MCP server. Connect to hosted server (no API keys during devnet beta) or self-host via npm @bundie/sol-mcp.
 metadata:
   category: oracle
-  homepage: https://bundie.fi
+  homepage: https://solana.bundie.fi
   documentation: https://docs.bundie.fi/docs/oracle/overview
   mcp-server: https://mcp.bundie.fi/solana
   npm: https://www.npmjs.com/package/@bundie/sol-mcp
